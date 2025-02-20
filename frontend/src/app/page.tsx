@@ -1,21 +1,28 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import React from "react";
+import AuroraBackground from "../components/AuroraBackground";
+import FlipWords from "../components/FlipWords";
 
-export default function Home() {
-  const [message, setMessage] = useState("Loading...");
-
-  useEffect(() => {
-    fetch("/api/backend")
-      .then((res) => res.json())
-      .then((data) => setMessage(data.message))
-      .catch(() => setMessage("Failed to fetch backend"));
-  }, []);
-
+const Home: React.FC = () => {
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen bg-gray-900 text-white text-center px-6">
-      <h1 className="text-5xl font-bold mb-4">Welcome to Metsaspace 🚀</h1>
-      <p className="text-lg text-gray-400 mb-6">{message}</p>
+    <div className="relative min-h-screen flex flex-col items-center justify-center text-center text-white">
+      {/* Background */}
+      <AuroraBackground />
+
+      {/* Page Content */}
+      <div className="relative z-10">
+        <h1 className="text-4xl md:text-6xl font-bold">
+          Welcome to Metsaspace 🚀
+        </h1>
+
+        {/* FlipWords Below the Title */}
+        <div className="mt-4 text-2xl md:text-4xl font-semibold">
+          <FlipWords />
+        </div>
+      </div>
     </div>
   );
-}
+};
+
+export default Home;
